@@ -1,123 +1,53 @@
-* {
-    padding: 0;
+body{
+    box-sizing: border-box;
     margin: 0;
-    border: 0;
-    box-sizing: border-box;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-*,
-*:before,
-*:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-:focus,
-:active {
-    outline: none;
-}
-
-a:focus,
-a:active {
-    outline: none;
-}
-
-nav,
-footer,
-header,
-aside {
-    display: block;
-}
-
-html,
-body {
-    height: 100%;
-    width: 100%;
-    font-size: 100%;
-    line-height: 1;
-    font-size: 14px;
-    -ms-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-}
-
-input,
-button,
-textarea {
-    font-family: inherit;
-}
-
-input::-ms-clear {
-    display: none;
-}
-
-button {
-    cursor: pointer;
-}
-
-button::-moz-focus-inner {
     padding: 0;
-    border: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 26px;
 }
 
-a,
-a:visited {
-    text-decoration: none;
+p{
+    margin: 0;
 }
 
-a:hover {
-    text-decoration: none;
+.wrapper{
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
-ul li {
-    list-style: none;
+/* header syles */
+/* 
+.header_container{
+    width: 100%;
+    padding: 0px 32px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    box-sizing: border-box;
 }
 
-img {
-    vertical-align: top;
+.logo{
+    max-width: 100%;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-size: inherit;
-    font-weight: 400;
-}
-
-/*-------------------------------------------------------------------------*/
-.wrapper {
-    min-height: 100%;
+.menu{
     display: flex;
-    flex-direction: column;
-    font-size: 30px;
+    align-items: center;
+    justify-content: center;
 }
 
-.header {}
-
-.container {
-    border: solid 1px black;
-
+.menu__element{
+    margin: 0 7px;
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-style: 14px;
+    letter-spacing: 3px;
 }
 
-.header__row {}
+.menu__element:hover{
+    color: blue;
+} */
 
-.header__text {}
-
-.content {
-    flex: 1 1 auto;
-}
-
-.content__row {}
-
-.content__text {}
-
-.footer {}
-
-.footer__row {}
-
-.footer__text {}

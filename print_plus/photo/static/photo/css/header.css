@@ -20,10 +20,12 @@
     align-self: stretch;
 }
 .contact__element{
+    transition: color 0.5s linear;
     font-weight: 300;
 }
 
 .bucket{
+    transition: color 0.5s linear;
     display: flex;
     align-items: center;
     justify-content: center;

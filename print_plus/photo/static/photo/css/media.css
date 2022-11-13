@@ -18,7 +18,23 @@
 
 @media (any-hover: hover) {
     .nav__element:hover {
-      color: #5274ED;
-      transition: color 0.1s linear;
+        color: #5274ED;
+        transition: color 0.1s linear;
     }
-  }
+
+    .button:hover{
+        background-color: #5274ED;
+        color: white;
+        transition: color 0.1s linear;
+    }
+
+    .bucket:hover{
+        background-color: #5274ED;
+        transition: color 0.1s linear;
+    }
+
+    .contact__element:hover{
+        color: #5274ED;
+        transition: color 0.1s linear;
+    }
+}

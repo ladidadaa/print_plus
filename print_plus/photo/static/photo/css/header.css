@@ -24,6 +24,14 @@
     font-weight: 300;
 }
 
+.menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: stretch;
+    align-self: stretch;
+}
+
 .bucket{
     transition: color 0.5s linear;
     display: flex;
@@ -32,5 +40,28 @@
     border: 1px solid black;
     border-radius: 25%;
     width: 51px; 
-    height: 51px;
+    
+    margin-right: 30px;
+}
+.bucket:last-child{
+    margin-right: 0px;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+}
+.login__element{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 26px;
+    border: none;
+    border-bottom: 1px solid #3a3a3a;
+    margin-bottom: 30px;
+    border-radius: 3px;
+    outline: none;
+    padding: 0px 0px 5px 5px;
+}
+.login__element_button{
+    margin-bottom: 10px;
 }

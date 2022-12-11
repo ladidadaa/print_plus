@@ -39,9 +39,30 @@
                     printplus@mail.ru
                 </p>
             </div>
-            <a href="#" class="bucket">
-                <img class='nav-button__element' src="/img/bucket.svg" alt="#" width="40" height="40"> 
-            </a>
+            <div class="menu">
+                <button class="bucket button">
+                    <img class='nav-button__element' src="/img/bucket.svg" alt="#" width="40" height="40"> 
+                </button>
+                <button type="button" class="bucket button" onclick="window.logIn.showModal();">
+                    <img class='nav-button__element' src="/img/user.svg" alt="#" width="40" height="40"> 
+                </button>
+                <dialog class="dialog" id="logIn">
+                    <form action="" method="post" class="login">
+                        <input class="login__element" type="text" name="username" id="username-field" class="login-form-field" placeholder="Имя пользователя">
+                        <input class="login__element" type="password" name="password" id="password-field" class="login-form-field" placeholder="Пароль">
+                        <input class="login__element_button button" type="button" value="Вход" id="login-form-submit" onclick="window.logIn.close();">
+                        <input class="login__element_button button button_second" type="button" value="Регистрация" id="login-form-submit" onclick="window.registration.showModal();window.logIn.close();">
+                    </form>
+                </dialog>
+                <dialog class="dialog" id="registration">
+                    <form action="" method="post" class="login">
+                        <input class="login__element" type="text" name="username" id="username-field" class="login-form-field" placeholder="Имя пользователя">
+                        <input class="login__element" type="password" name="password" id="password-field" class="login-form-field" placeholder="Пароль">
+                        <input class="login__element" type="password" name="password" id="password-field" class="login-form-field" placeholder="Повторите пароль">
+                        <input class="login__element_button button" type="button" value="Подтвердить" id="login-form-submit" onclick="window.registration.close();">
+                    </form>
+                </dialog>
+            </div>
         </header>
         <main class="main">
             <div class="nav">
@@ -120,7 +141,13 @@
                 </div>
                 <div class="tab_info">
                     <p class="tab_info__element text">Используем белую бумагу 80 г/м2</p>
-                    <button class="tab_info__element button">К заказу</button>
+                    <button type="button" class="tab_info__element button" onclick="window.order.showModal();">Заказать</button>
+                    <dialog class="dialog" id="order">
+                        Заказ
+                        <button class="button" type="button" onclick="window.order.close();">
+                            Закрыть
+                        </button>
+                    </dialog>
                 </div>
             </div>
             <div class="tab photo" hidden>photo</div>

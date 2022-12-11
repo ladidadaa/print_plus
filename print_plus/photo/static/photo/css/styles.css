@@ -11,6 +11,31 @@ p{
     margin: 0;
 }
 
+.button{
+    transition: color 0.5s linear;
+    padding: 12px 34px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 26px;
+    color: #5274ED;;
+    background-color: white;
+    border: 1px solid #5274ED;
+}
+.button_second{
+    transition: color 0.5s linear;
+    padding: 12px 34px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 26px;
+    color: #525252;
+    background-color: white;
+    border: 1px solid #525252;
+}
+
+.dialog{
+    border: 0;
+    padding: 50px;
+}
 .wrapper{
     min-height: 100vh;
     display: grid;

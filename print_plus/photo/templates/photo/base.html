@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>print plus</title>
+    <link href="{% static 'photo/css/styles.css' %}" rel="stylesheet" type="text/css"/>
+    <link type="text/css" href="{% static 'photo/css/media.css' %}" rel="stylesheet"/>
+    <link type="text/css" href="{% static 'photo/css/header.css' %}" rel="stylesheet"/>
+    <link type="text/css" href="{% static 'photo/css/main.css' %}" rel="stylesheet"/>
+    <link type="text/css" href="{% static 'photo/css/footer.css' %}" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,400;1,500;1,600;1,700&&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+<div class="wrapper">
+    <header class="header">
+        <div class="logo">
+            <a href="#">
+                <img src="{% static 'photo/images/logo.svg' %}" alt="Принт плюс" width="143" height="85">
+            </a>
+        </div>
+        <!-- <nav class="nav">
+            <ul class="nav">
+                <li class="nav__element"><a href="#">Главная</a></li>
+                <li class="nav__element"><a href="#">Услуги</a></li>
+                <li class="nav__element"><a href="#">О нас</a></li>
+            </ul>
+        </nav>  -->
+        <div class="contact">
+            <p class="contact__element">
+                <img src="{% static 'photo/images/phone.svg' %}" alt="" width="23" height="23">
+                +7 (929) 500-80-69
+            </p>
+            <p class="contact__element">
+                <img src="{% static 'photo/images/mail.svg' %}" alt="" width="27" height="16">
+                printplus@mail.ru
+            </p>
+        </div>
+        <div class="menu">
+            {% if request.user.is_authenticated %}
+            <button class="bucket button">
+                <img class='nav-button__element' src="{% static 'photo/images/bucket.svg' %}" alt="#" width="40"
+                     height="40">
+            </button>
+            {% endif %}
+            <button type="button" class="bucket button" onclick="window.logIn.showModal();">
+                <img class='nav-button__element' src="{% static 'photo/images/user.svg' %}" alt="#" width="40"
+                     height="40">
+            </button>
+            {% if request.user.is_authenticated %}
+            <dialog class="dialog" id="logIn">
+                <form action="{% url 'logout' %}">
+                    <p style="text-align: center">Салам,</p>
+                    <p style="text-align: center">{{ user.username }}</p>
+                    <input class="login__element_button button" value="Выход" type="submit">
+                </form>
+            </dialog>
+            {% else %}
+            <dialog class="dialog" id="logIn">
+                <form action="{% url 'home' %}" method="post" class="login">
+                    {% csrf_token %}
+                    {{ login_form.username }}
+                    {{ login_form.password }}
+                    <button class="login__element_button button" type="button" id="login-form-submit">Вход</button>
+                    <input class="login__element_button button button_second" type="button" value="Регистрация"
+                           onclick="window.registration.showModal();window.logIn.close();">
+                    <button class="button" type="button" onclick="window.logIn.close();">
+                        Закрыть
+                    </button>
+                    <div class="alert alert-success" id="errors">
+
+                    </div>
+                </form>
+            </dialog>
+            <dialog class="dialog" id="registration">
+                <form action="{% url 'home' %}" method="post" class="login">
+                    {% csrf_token %}
+                    {{ register_form.username }}
+                    {{ register_form.password1 }}
+                    {{ register_form.password2 }}
+                    <button class="login__element_button button" name="registration" type="button"
+                            id="registration-form-submit">Подтвердить
+                    </button>
+                    <button class="button" type="button" onclick="window.registration.close();">
+                        Закрыть
+                    </button>
+                    <div class="alert alert-success" id="regerrors">
+
+                    </div>
+                </form>
+            </dialog>
+
+            {% endif %}
+        </div>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer class="footer">
+        О нас
+    </footer>
+</div>
+<script src="{% static 'photo/js/index.js' %}"></script>
+
+{% block javascript %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$('#login-form-submit').click(function () {
+    login($('#username-field').val(), $('#password-field').val());
+});
+
+$('#registration-form-submit').click(function () {
+    register($('#username2-field').val(), $('#password2-field').val(), $('#repeat_password-field').val());
+});
+
+
+function login(nick, password) {
+    var data = {
+        "nick": nick,
+        "password": password
+    };
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "{% url 'ajax_login' %}",
+        dataType: "json",
+        data: $.param(data),
+        success: function (data) {
+        if (data["error"] == "success") {
+            window.location.reload()
+        } else {
+            $("#errors").replaceWith("<div class='alert alert-success' id='errors'><p>" + data['error'] + "</p></div>");
+            }
+        },
+    });
+}
+
+
+function register(username, password1, password2) {
+    var data = {
+        "username": username,
+        "password1": password1,
+        "password2": password2,
+    };
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "{% url 'ajax_registr' %}",
+        dataType: "json",
+        data: $.param(data),
+        success: function (data) {
+        if (data["error"] == "success") {
+            window.location.reload()
+        } else {
+            $("#regerrors").replaceWith("<div class='alert alert-success' id='regerrors'><p>" + data['error'] + "</p></div>");
+            }
+        },
+    });
+}
+
+
+</script>
+{% endblock javascript %}
+
+</body>
+
+</html>

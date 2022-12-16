@@ -100,3 +100,57 @@ tr:nth-child(even) td {
 .tab_info__element{
 }
 
+.order{
+    display: flex;
+    flex-direction: column;
+}
+.order_form{
+    display: flex;
+    flex-direction: column;
+}
+.order_form__element{
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 26px;
+    transition: color 0.5s linear;
+}
+.order_form__element:first-child{
+    margin-top: 20px;
+}
+.file{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 26px;
+    background-color: white;
+    background: url("/img/search.svg") no-repeat;
+}
+.order_form ol {
+    padding-left: 0;
+  }
+
+.order_form li, .order_form div > p {
+    background: #eee;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    list-style-type: none;
+  }
+
+.order_form img {
+    height: 64px;
+    order: 1;
+  }
+
+.order_form p {
+    line-height: 32px;
+    padding-left: 10px;
+  }
+
+.order_form__element_download{
+    display: grid;
+    grid-template-columns: 0.01fr 1fr;
+}
+.order_form__element_download label{
+    font-size: 50px;
+}

@@ -141,12 +141,35 @@
                 </div>
                 <div class="tab_info">
                     <p class="tab_info__element text">Используем белую бумагу 80 г/м2</p>
-                    <button type="button" class="tab_info__element button" onclick="window.order.showModal();">Заказать</button>
-                    <dialog class="dialog" id="order">
-                        Заказ
-                        <button class="button" type="button" onclick="window.order.close();">
-                            Закрыть
-                        </button>
+                    <button type="button" class="tab_info__element button" onclick="window.order_dialog.showModal();">Заказать</button>
+                    <dialog class="dialog" id="order_dialog">
+                        <p class="title">Печать документов</p>
+                        <div class="order">
+                            <form action="" method="post" class="order_form">
+                                <select name="format" class="order_form__element select">
+                                    <option value="A4">A4</option>
+                                    <option value="A3">A3</option>
+                                </select>
+                                <select name="format" class="order_form__element select">
+                                    <option value="with_text">Только текст</option>
+                                    <option value="with_picture">С картинками</option>
+                                </select>
+                                <input class="order_form__element" type="text" name="count" placeholder="Колличество экземпляров">
+                                <input class="order_form__element" type="text" name="count" placeholder="Колличество страниц">
+                                <p>Загрузить файл:</p>
+                                <div class="order_form__element button order_form__element_download">
+                                    <label for="file">+</label>
+                                    <input type="file" class="file" name="file" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" multiple>
+                                </div>    
+                                <div class="file_preview">
+                                    <p>Ни один файл для загрузки не выбран</p>
+                                </div>
+                                <p class="order_form__element select">Итоговая стоимость: 0р</p>
+                                <button class="button order_form__element" type="button" onclick="window.order_dialog.close();">
+                                    Заказать
+                                </button>
+                            </form>
+                        </div>    
                     </dialog>
                 </div>
             </div>

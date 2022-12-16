@@ -154,3 +154,7 @@ tr:nth-child(even) td {
 .order_form__element_download label{
     font-size: 50px;
 }
+.order_form__input{
+    border: none;
+    border-bottom: 1px solid #3a3a3a;
+}

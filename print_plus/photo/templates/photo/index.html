@@ -40,12 +40,12 @@
                 </p>
             </div>
             <div class="menu">
-                <button class="bucket button">
+                <a class="bucket button a_button" href="bucket.html">
                     <img class='nav-button__element' src="/img/bucket.svg" alt="#" width="40" height="40"> 
-                </button>
-                <button type="button" class="bucket button" onclick="window.logIn.showModal();">
+                </a> 
+                <a type="button" class="bucket button a_button" onclick="window.logIn.showModal();">
                     <img class='nav-button__element' src="/img/user.svg" alt="#" width="40" height="40"> 
-                </button>
+                </a>
                 <dialog class="dialog" id="logIn">
                     <form action="" method="post" class="login">
                         <input class="login__element" type="text" name="username" id="username-field" class="login-form-field" placeholder="Имя пользователя">
@@ -183,6 +183,7 @@
         </footer>
     </div>
     <script src="/js/index.js"></script>
+    <script src="/js/tab_change.js"></script>
 </body>
 
 </html>

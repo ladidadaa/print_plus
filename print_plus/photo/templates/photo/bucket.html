@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>print plus</title>
+    <link type="text/css" href="/print_plus/photo/static/photo/css/styles.css" rel="stylesheet" />
+    <link type="text/css" href="/print_plus/photo/static/photo/css/media.css" rel="stylesheet" />
+    <link type="text/css" href="/print_plus/photo/static/photo/css/header.css" rel="stylesheet" />
+    <link type="text/css" href="/print_plus/photo/static/photo/css/main.css" rel="stylesheet" />
+    <link type="text/css" href="/print_plus/photo/static/photo/css/footer.css" rel="stylesheet" />
+    <link type="text/css" href="/print_plus/photo/static/photo/css/bucket.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,400;1,500;1,600;1,700&&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="logo">
+                <a href="#">
+                <img src="/img/logo.svg" alt="Принт плюс" width="143" height="85">
+                </a>
+            </div>
+            <!-- <nav class="nav">  
+                <ul class="nav">  
+                    <li class="nav__element"><a href="#">Главная</a></li>  
+                    <li class="nav__element"><a href="#">Услуги</a></li>  
+                    <li class="nav__element"><a href="#">О нас</a></li>     
+                </ul>  
+            </nav>  -->
+            <div class="contact">
+                <p class="contact__element">
+                    <img src="/img/phone.svg" alt="" width="23" height="23">
+                    +7 (929) 500-80-69
+                </p>
+                <p class="contact__element">
+                    <img src="/img/mail.svg" alt="" width="27" height="16">
+                    printplus@mail.ru
+                </p>
+            </div>
+            <div class="menu">
+                <button class="bucket button">
+                    <img class='nav-button__element' src="/img/bucket.svg" alt="#" width="40" height="40"> 
+                </button>
+                <button type="button" class="bucket button" onclick="window.logIn.showModal();">
+                    <img class='nav-button__element' src="/img/user.svg" alt="#" width="40" height="40"> 
+                </button>
+                <dialog class="dialog" id="logIn">
+                    <form action="" method="post" class="login">
+                        <input class="login__element" type="text" name="username" id="username-field" class="login-form-field" placeholder="Имя пользователя">
+                        <input class="login__element" type="password" name="password" id="password-field" class="login-form-field" placeholder="Пароль">
+                        <input class="login__element_button button" type="button" value="Вход" id="login-form-submit" onclick="window.logIn.close();">
+                        <input class="login__element_button button button_second" type="button" value="Регистрация" id="login-form-submit" onclick="window.registration.showModal();window.logIn.close();">
+                    </form>
+                </dialog>
+                <dialog class="dialog" id="registration">
+                    <form action="" method="post" class="login">
+                        <input class="login__element" type="text" name="username" id="username-field" class="login-form-field" placeholder="Имя пользователя">
+                        <input class="login__element" type="password" name="password" id="password-field" class="login-form-field" placeholder="Пароль">
+                        <input class="login__element" type="password" name="password" id="password-field" class="login-form-field" placeholder="Повторите пароль">
+                        <input class="login__element_button button" type="button" value="Подтвердить" id="login-form-submit" onclick="window.registration.close();">
+                    </form>
+                </dialog>
+            </div>
+        </header>
+        <main class="bucket_wrapper">
+            <p class="bucket_title">Корзина</p>
+            <div class="order_position">
+                <p class="order_position__element">Название услуги 1</p>
+                <p class="order_position__element">цена 1</p>
+                <button type="button" class="tab_info__element button" onclick="window.order_dialog.showModal();">Изменить</button>
+            </div>
+            <div class="order_position">
+                <p class="order_position__element">Название услуги 2</p>
+                <p class="order_position__element">цена 2</p>
+                <button type="button" class="tab_info__element button" onclick="window.order_dialog.showModal();">Изменить</button>
+            </div>
+            <button class="button" type="button">
+                К оплате
+            </button>
+            <dialog class="dialog" id="order_dialog">
+                <p class="title">Печать документов</p>
+                <div class="order">
+                    <form action="" method="post" class="order_form">
+                        <select name="format" class="order_form__element order_form__input select">
+                            <option value="A4">A4</option>
+                            <option value="A3">A3</option>
+                        </select>
+                        <select name="format" class="order_form__element order_form__input select">
+                            <option value="with_text">Только текст</option>
+                            <option value="with_picture">С картинками</option>
+                        </select>
+                        <input class="order_form__element order_form__input" type="text" name="count" placeholder="Колличество экземпляров">
+                        <input class="order_form__element order_form__input" type="text" name="count" placeholder="Колличество страниц">
+                        <p>Загрузить файл:</p>
+                        <div class="order_form__element button order_form__element_download">
+                            <label for="file">+</label>
+                            <input type="file" class="file" name="file" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" multiple>
+                        </div>    
+                        <div class="file_preview">
+                            <p>Ни один файл для загрузки не выбран</p>
+                        </div>
+                        <p class="order_form__element select">Итоговая стоимость: 0р</p>
+                        <button class="button order_form__element" type="button" onclick="window.order_dialog.close();">
+                            Заказать
+                        </button>
+                    </form>
+                </div>    
+            </dialog>
+        </main>
+        <footer class="footer">
+            О нас
+        </footer>
+    </div>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

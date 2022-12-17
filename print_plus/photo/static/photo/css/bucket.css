@@ -1,0 +1,18 @@
+.bucket_wrapper{
+    margin: 0 auto;
+}
+.order_position{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #5274ED;
+    padding: 10px;
+}
+
+.order_position__element{
+    margin-right: 30px;
+}
+.bucket_title{
+    font-weight: 600;
+    margin-bottom: 40px;
+}

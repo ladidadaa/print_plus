@@ -21,6 +21,9 @@ p{
     background-color: white;
     border: 1px solid #5274ED;
 }
+.a_button{
+    padding: 10px 10px;
+}
 .button_second{
     transition: color 0.5s linear;
     padding: 12px 34px;

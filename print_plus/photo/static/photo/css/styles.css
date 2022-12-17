@@ -21,6 +21,11 @@ p{
     background-color: white;
     border: 1px solid #5274ED;
 }
+.close{
+    margin-left: 90%;
+    margin-bottom: 20px;
+    padding: 1px 10px;
+}
 .a_button{
     padding: 10px 10px;
 }
@@ -38,6 +43,7 @@ p{
 .dialog{
     border: 0;
     padding: 50px;
+    padding-top: 20px;
 }
 .wrapper{
     min-height: 100vh;

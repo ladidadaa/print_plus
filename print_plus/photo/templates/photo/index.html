@@ -47,6 +47,7 @@
                     <img class='nav-button__element' src="/img/user.svg" alt="#" width="40" height="40"> 
                 </a>
                 <dialog class="dialog" id="logIn">
+                    <button class="close button" onclick="window.logIn.close();">x</button>
                     <form action="" method="post" class="login">
                         <input class="login__element" type="text" name="username" id="username-field" class="login-form-field" placeholder="Имя пользователя">
                         <input class="login__element" type="password" name="password" id="password-field" class="login-form-field" placeholder="Пароль">
@@ -55,6 +56,7 @@
                     </form>
                 </dialog>
                 <dialog class="dialog" id="registration">
+                    <button class="close button" onclick="window.registration.close();">x</button>
                     <form action="" method="post" class="login">
                         <input class="login__element" type="text" name="username" id="username-field" class="login-form-field" placeholder="Имя пользователя">
                         <input class="login__element" type="password" name="password" id="password-field" class="login-form-field" placeholder="Пароль">
@@ -143,6 +145,7 @@
                     <p class="tab_info__element text">Используем белую бумагу 80 г/м2</p>
                     <button type="button" class="tab_info__element button" onclick="window.order_dialog.showModal();">Заказать</button>
                     <dialog class="dialog" id="order_dialog">
+                        <button class="close button" onclick="window.order_dialog.close();">x</button>
                         <p class="title">Печать документов</p>
                         <div class="order">
                             <form action="" method="post" class="order_form">

@@ -37,4 +37,14 @@
         color: #5274ED;
         transition: color 0.1s linear;
     }
+    .order_form__element:hover{
+        border-color: #5274ED;
+        color: white;
+        transition: color 0.1s linear;
+    }
+    .select:hover{
+        border-color: #5274ED;
+        color:black;
+        transition: color 0.1s linear;
+    }
 }

@@ -1,0 +1,77 @@
+{% extends 'photo\base.html' %}
+{% load static %}
+{% load photo_tags %}
+{% block content %}
+
+<main class="bucket_wrapper">
+    <p class="bucket_title">Корзина</p>
+    {% for i in orders %}
+    <div class="order_position">
+        <p class="order_position__element">Тип услуги: <br>Печать</p>
+        <p class="order_position__element">Тип бумаги: <br>{{ i.paper_type }}</p>
+        <p class="order_position__element">Формат: <br>{{ i.format }}</p>
+        {% if i.document_type != '' %}
+        <p class="order_position__element">Тип документа: <br>{{ i.document_type }}</p>
+        {% endif %}
+        <p class="order_position__element">Количество страниц: <br>{{ i.page_count }}</p>
+        <p class="order_position__element">Количество экземпляров: <br>{{ i.instance_count }}</p>
+        <p class="order_position__element">Цена: <br>{{ i.price }}</p>
+        <button id="{{ i.id }}" name="changing" type="button" class="tab_info__element button"
+                onclick="window.order_dialog.showModal();">Изменить
+        </button>
+    </div>
+    {% endfor %}
+    <button class="button" type="button">
+        К оплате
+    </button>
+    <dialog class="dialog" id="order_dialog">
+        <p class="title">Печать документов</p>
+        <div id="tretete"></div>
+        <div class="order">
+            <form action="" method="post" class="order_form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <select id="color" class="order_form__element order_form__input select">
+                    <option value="colored">Цветная</option>
+                    <option value="black">Черно-белая</option>
+                </select>
+                <select id="format" class="order_form__element order_form__input select">
+                    <option value="А4">А4</option>
+                    <option value="А3">А3</option>
+                </select>
+
+                <input class="order_form__element order_form__input" type="text" onkeyup="checkParams()"
+                       id="ex_count"
+                       placeholder="Колличество экземпляров">
+                <input class="order_form__element order_form__input" type="text" onkeyup="checkParams()"
+                       id="page_count"
+                       placeholder="Колличество страниц">
+                <p>Загрузить файл:</p>
+                <div class="order_form__element button order_form__element_download">
+                    <label for="file">+</label>
+                    <input type="file" class="file" id="file" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"
+                           multiple>
+                </div>
+                <div class="file_preview">
+                    <p>Ни один файл для загрузки не выбран</p>
+                </div>
+                <p id="price" class="order_form__element select">Итоговая стоимость: 0р</p>
+                <button id="change" class="button order_form__element" type="button"
+                        disabled>
+                    Изменить
+                </button>
+                <button class="login__element_button button button_second" type="button"
+                        onclick="window.order_dialog.close();">
+                    Закрыть
+                </button>
+            </form>
+        </div>
+        <div class="alert alert-success" id="order_errors">
+
+        </div>
+        <div class='file_preview' id='button_errors'>
+
+        </div>
+    </dialog>
+</main>
+
+{% endblock %}

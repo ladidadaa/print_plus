@@ -21,6 +21,14 @@ p{
     background-color: white;
     border: 1px solid #5274ED;
 }
+.close{
+    margin-left: 90%;
+    margin-bottom: 20px;
+    padding: 1px 10px;
+}
+.a_button{
+    padding: 10px 10px;
+}
 .button_second{
     transition: color 0.5s linear;
     padding: 12px 34px;
@@ -35,6 +43,7 @@ p{
 .dialog{
     border: 0;
     padding: 50px;
+    padding-top: 20px;
 }
 .wrapper{
     min-height: 100vh;
@@ -43,7 +52,7 @@ p{
 }
 
 /* header syles */
-/* 
+/*
 .header_container{
     width: 100%;
     padding: 0px 32px;
@@ -51,17 +60,14 @@ p{
     grid-template-columns: 1fr 3fr 1fr;
     box-sizing: border-box;
 }
-
 .logo{
     max-width: 100%;
 }
-
 .menu{
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 .menu__element{
     margin: 0 7px;
     text-decoration: none;
@@ -71,8 +77,6 @@ p{
     font-style: 14px;
     letter-spacing: 3px;
 }
-
 .menu__element:hover{
     color: blue;
 } */
-

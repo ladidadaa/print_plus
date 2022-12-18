@@ -12,6 +12,7 @@
     <link type="text/css" href="{% static 'photo/css/header.css' %}" rel="stylesheet"/>
     <link type="text/css" href="{% static 'photo/css/main.css' %}" rel="stylesheet"/>
     <link type="text/css" href="{% static 'photo/css/footer.css' %}" rel="stylesheet"/>
+    <link type="text/css" href="{% static 'photo/css/bucket.css' %}" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,400;1,500;1,600;1,700&&display=swap"
           rel="stylesheet">
 </head>
@@ -20,7 +21,7 @@
 <div class="wrapper">
     <header class="header">
         <div class="logo">
-            <a href="#">
+            <a href="{% url 'home' %}">
                 <img src="{% static 'photo/images/logo.svg' %}" alt="Принт плюс" width="143" height="85">
             </a>
         </div>
@@ -43,7 +44,7 @@
         </div>
         <div class="menu">
             {% if request.user.is_authenticated %}
-            <button class="bucket button">
+            <button class="bucket button" onclick="window.location.href = {% url 'bucket' %};">
                 <img class='nav-button__element' src="{% static 'photo/images/bucket.svg' %}" alt="#" width="40"
                      height="40">
             </button>
@@ -59,6 +60,9 @@
                     <p style="text-align: center">{{ user.username }}</p>
                     <input class="login__element_button button" value="Выход" type="submit">
                 </form>
+                <button class="button" type="button" onclick="window.logIn.close();">
+                    Закрыть
+                </button>
             </dialog>
             {% else %}
             <dialog class="dialog" id="logIn">
@@ -101,7 +105,6 @@
     {% block content %}
     {% endblock %}
     <footer class="footer">
-        О нас
     </footer>
 </div>
 <script src="{% static 'photo/js/index.js' %}"></script>
@@ -118,6 +121,30 @@ $('#registration-form-submit').click(function () {
     register($('#username2-field').val(), $('#password2-field').val(), $('#repeat_password-field').val());
 });
 
+$('#color').change(function () {
+    color = $("#color").val();
+    docs_types(color);
+});
+
+$('#format').change(function () {
+    checkParams();
+});
+
+$('#doc_type').change(function () {
+    checkParams();
+});
+
+$('#zakaz').click(function(){
+    uploadFile();
+});
+
+$('[name="changing"]').click(function(){
+     $("#tretete").replaceWith("<div hidden id='tretete'><p>" + this.id + "</p></div>");
+});
+
+$('#change').click(function(){
+    uploadOrder();
+});
 
 function login(nick, password) {
     var data = {
@@ -134,7 +161,7 @@ function login(nick, password) {
         if (data["error"] == "success") {
             window.location.reload()
         } else {
-            $("#errors").replaceWith("<div class='alert alert-success' id='errors'><p>" + data['error'] + "</p></div>");
+            $("#errors").replaceWith("<div class='file_preview' id='errors'><p>" + data['error'] + "</p></div>");
             }
         },
     });
@@ -157,12 +184,159 @@ function register(username, password1, password2) {
         if (data["error"] == "success") {
             window.location.reload()
         } else {
-            $("#regerrors").replaceWith("<div class='alert alert-success' id='regerrors'><p>" + data['error'] + "</p></div>");
+            $("#regerrors").replaceWith("<div class='file_preview' id='regerrors'><p>" + data['error'] + "</p></div>");
             }
         },
     });
 }
 
+
+function docs_types(color) {
+    var data = {
+        "color": color,
+    };
+    $.ajax({
+        async: true,
+        type: "POST",
+        url: "{% url 'ajax_doctype' %}",
+        dataType: "json",
+        data: $.param(data),
+        success: function (data) {
+        console.log(data);
+        if (data["content"] != "mimo") {
+            $("#format").after('<select id="doc_type" class="order_form__element order_form__input select"></select>');
+            for (type of data.content) {
+                $("#doc_type").append("<option  value=" + type.replace(" ","_") + ">" + type + "</option>");
+            };
+        } else {
+                $("#doc_type").detach();
+        }
+        },
+        error: function (jqXHR, text, error) {
+            console.log(error);
+        }
+    });
+}
+
+function checkParams() {
+    var pages = $('#page_count').val();
+    var ex = $('#ex_count').val();
+    var format = $('#format').val();
+    var color = $('#color').val();
+    var doc_type = $('#doc_type').val();
+    var file_data = $('#file').prop('files')[0];
+    if(pages.length != 0 && ex.length != 0) {
+        $('#zakaz').removeAttr("disabled");
+        $('#change').removeAttr("disabled");
+        var data = {
+            "pages": pages,
+            "ex": ex,
+            "format": format,
+            "color": color,
+            "doc_type": doc_type,
+        };
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: "{% url 'ajax_order' %}",
+            dataType: "json",
+            data: $.param(data),
+            success: function (data) {
+                if (data["error"] == "success") {
+                    $("#order_errors").detach();
+                    $("#price").replaceWith('<p id="price" class="order_form__element select">Итоговая стоимость:' + data['price'] + 'р' + '</p>');
+                } else {
+                    $("#order_errors").replaceWith("<div class='file_preview' id='order_errors'><p>" + data['error'] + "</p></div>");
+                }
+            },
+        });
+    }
+}
+
+function uploadFile() {
+    var file_data = $('#file').prop('files')[0];
+    var form_data = new FormData();
+    var pages = $('#page_count').val();
+    var ex = $('#ex_count').val();
+    var format = $('#format').val();
+    var color = $('#color').val();
+    var doc_type = $('#doc_type').val();
+    var price = $('#price').text();
+    form_data.append('file', file_data);
+    form_data.append('pages', pages);
+    form_data.append('ex', ex);
+    form_data.append('format', format);
+    form_data.append('color', color);
+    form_data.append('doc_type', doc_type);
+    form_data.append('price', price);
+
+    $.ajax({
+        url: "{% url 'ajax_uploadFile' %}",
+        dataType: 'text',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function (data) {
+             console.log(data);
+            if(data == "success"){
+                var dialog = document.getElementById('order_dialog');
+                dialog.close();
+            }
+            else{
+                $("#button_errors").replaceWith("<div class='file_preview' id='button_errors'><p>" + data + "</p></div>");
+            }
+        },
+        error: function (jqXHR, text, error) {
+            console.log(error);
+        }
+    });
+}
+
+function uploadOrder() {
+    var file_data = $('#file').prop('files')[0];
+    var form_data = new FormData();
+    var pages = $('#page_count').val();
+    var ex = $('#ex_count').val();
+    var format = $('#format').val();
+    var color = $('#color').val();
+    var doc_type = $('#doc_type').val();
+    var price = $('#price').text();
+    var id = $('#tretete').text()
+    form_data.append('file', file_data);
+    form_data.append('pages', pages);
+    form_data.append('ex', ex);
+    form_data.append('format', format);
+    form_data.append('color', color);
+    form_data.append('doc_type', doc_type);
+    form_data.append('price', price);
+    form_data.append('id', id);
+
+    $.ajax({
+        url: "{% url 'ajax_uploadOrder' %}",
+        dataType: 'text',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function (data) {
+             console.log(data);
+            if(data == "success"){
+                var dialog = document.getElementById('order_dialog');
+                dialog.close();
+                window.location.reload()
+            }
+            else{
+                $("#button_errors").replaceWith("<div class='file_preview' id='button_errors'><p>" + data + "</p></div>");
+            }
+        },
+        error: function (jqXHR, text, error) {
+            console.log(error);
+        }
+    });
+}
 
 </script>
 {% endblock javascript %}

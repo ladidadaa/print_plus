@@ -1,0 +1,9 @@
+2023-01-10 20:51:30,494 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-01-10 20:51:37,270 django.request WARNING  Not Found: /favicon.ico
+2023-01-10 20:52:47,688 django.utils.autoreload INFO     C:\Users\sirso\PycharmProjects\print_plus\print_plus\print_plus\settings.py changed, reloading.
+2023-01-10 20:53:09,915 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-01-10 20:53:15,505 django.request WARNING  Not Found: /img/search.svg
+2023-01-10 20:54:10,925 django.request WARNING  Not Found: /img/search.svg
+2023-01-10 20:54:52,799 django.request WARNING  Not Found: /img/search.svg
+2023-01-10 20:55:09,162 django.request WARNING  Not Found: /img/search.svg
+2023-01-10 20:58:10,388 django.utils.autoreload INFO     C:\Users\sirso\PycharmProjects\print_plus\print_plus\print_plus\settings.py changed, reloading.

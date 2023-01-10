@@ -114,7 +114,6 @@ def ajax_doctype(request):
 def ajax_order(request):
     data = request.POST
     try:
-        print(data)
         pages = int(data['pages'])
         ex = int(data['ex'])
         color = 'Черно белая' if data['color'] == 'black' else 'Цветная'

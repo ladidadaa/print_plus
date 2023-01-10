@@ -121,3 +121,30 @@ LOGIN_REDIRECT_URL = '/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': r'.\debug\debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+    },
+    'formatters': {
+        'console': {
+            'format': '%(name)-12s %(levelname)-8s %(message)s'
+        },
+        'file': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        }
+    },
+}

@@ -130,7 +130,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'formatter': 'file',
-            'filename': r'.\debug\debug.log',
+            'filename': r'.\debug.log',
         },
     },
     'loggers': {

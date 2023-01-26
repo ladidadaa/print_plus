@@ -7,23 +7,53 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Documents',
+            name="Documents",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type', models.CharField(db_index=True, max_length=100, verbose_name='Тип бумаги')),
-                ('format', models.CharField(db_index=True, max_length=100, verbose_name='Формат')),
-                ('document', models.CharField(blank=True, db_index=True, max_length=100, verbose_name='Документ')),
-                ('price', models.CharField(db_index=True, max_length=100, verbose_name='Цена')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "type",
+                    models.CharField(
+                        db_index=True, max_length=100, verbose_name="Тип бумаги"
+                    ),
+                ),
+                (
+                    "format",
+                    models.CharField(
+                        db_index=True, max_length=100, verbose_name="Формат"
+                    ),
+                ),
+                (
+                    "document",
+                    models.CharField(
+                        blank=True,
+                        db_index=True,
+                        max_length=100,
+                        verbose_name="Документ",
+                    ),
+                ),
+                (
+                    "price",
+                    models.CharField(
+                        db_index=True, max_length=100, verbose_name="Цена"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Документы',
-                'verbose_name_plural': 'Документы',
-                'ordering': ['id'],
+                "verbose_name": "Документы",
+                "verbose_name_plural": "Документы",
+                "ordering": ["id"],
             },
         ),
     ]

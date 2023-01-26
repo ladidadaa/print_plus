@@ -6,8 +6,8 @@ from print_plus import settings
 from photo.views import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('photo.urls')),
+    path("admin/", admin.site.urls),
+    path("", include("photo.urls")),
 ]
 
 if settings.DEBUG:
